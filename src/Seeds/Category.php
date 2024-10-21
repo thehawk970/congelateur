@@ -53,22 +53,22 @@ class Category extends Seed
 
         $categories = [
             [
-                'name' => 'Viande',
+                'name' => '🍗 Viande',
             ],
             [
-                'name' => 'Légumes',
+                'name' => '🫑 Légumes',
             ],
             [
-                'name' => 'Fruits',
+                'name' => '🍒 Fruits',
             ],
             [
-                'name' => 'Poisson',
+                'name' => '🐟 Poisson',
             ],
             [
-                'name' => 'Herbe'
+                'name' => '🧄 Herbe'
             ],
             [
-                'name' => 'Fromage'
+                'name' => '🧀 Fromage'
             ]
         ];
 

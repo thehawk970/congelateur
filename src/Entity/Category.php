@@ -18,16 +18,15 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Color $color = null;
-
     /**
      * @var Collection<int, Food>
      */
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Food::class)]
     private Collection $food;
+
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Color $color = null;
 
 
     public function __construct()
@@ -48,18 +47,6 @@ class Category
     public function setLabel(string $label): static
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function getColor(): ?Color
-    {
-        return $this->color;
-    }
-
-    public function setColor(Color $color): static
-    {
-        $this->color = $color;
 
         return $this;
     }
@@ -90,6 +77,18 @@ class Category
                 $food->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getColor(): ?Color
+    {
+        return $this->color;
+    }
+
+    public function setColor(?Color $color): static
+    {
+        $this->color = $color;
 
         return $this;
     }
