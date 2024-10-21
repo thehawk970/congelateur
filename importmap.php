@@ -16,10 +16,6 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
-    'table' => [
-        'path' => './assets/table.js',
-        'entrypoint' => true,
-    ],
     'login' => [
         'path' => './assets/login.js',
         'entrypoint' => true,

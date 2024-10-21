@@ -2,10 +2,13 @@
 
 namespace App\Twig\Components;
 
+use App\Entity\Color;
+use App\Entity\Food;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 #[AsTwigComponent]
 final class Tag
 {
-    public string $color;
+    public Color|null $color;
+    public Food|null $food;
 }

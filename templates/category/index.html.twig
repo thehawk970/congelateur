@@ -13,7 +13,7 @@
         <tbody>
         {% for category in categories %}
             <tr>
-                <td>{{ component('Tag', {color: category.color.color}) }}{{ category.label }}</td>
+                <td>{{ component('Tag', {color: category.color}) }}{{ category.label }}</td>
 
                 <td>
                     <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>

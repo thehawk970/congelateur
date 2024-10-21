@@ -1,3 +1,4 @@
-<span{{ attributes }}>
-    {{ color }}
-</span>
+<div {{ attributes }} class="my-auto lh-1" style="display:inline-block;">
+    {% if color is not null and color.color is not null %}<div style="display: inline-block; border-radius: 50%; height: 1rem; width: 1rem; background-color: {{ color.color }}; margin-right: 3px;"></div>{% endif %}
+    {% if food is defined %}{{ food.category.label }}#{{ food.id }}{% endif %}
+</div>
