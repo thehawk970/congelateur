@@ -1,0 +1,16 @@
+{
+	# This file is only used for dev and benchmarking.
+	# Please see /etc/Caddyfile in the container, for the one that is actual used in this demo
+
+	#debug
+	frankenphp
+}
+
+:80 {
+	#log
+	route {
+		root * /app/public/
+		#php_fastcgi 127.0.0.1:9000
+		php_server
+	}
+}
