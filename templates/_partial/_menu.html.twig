@@ -1,0 +1,67 @@
+{% set size_logo=48 %}
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="{{ path('app_home') }}" class="logo logo-dark">
+                    <span class="logo-sm">
+                        {{ component('Logo', {size: size_logo}) }}
+                    </span>
+                    <span class="logo-lg">
+                        {{ component('Logo', {size: size_logo}) }} <span class="logo-txt">Congélateur !</span>
+                    </span>
+                </a>
+
+                <a href="{{ path('app_home') }}" class="logo logo-light">
+                    <span class="logo-sm">
+                        {{ component('Logo', {size: size_logo}) }}
+                    </span>
+                    <span class="logo-lg">
+                        {{ component('Logo', {size: size_logo}) }}   <span class="logo-txt">Congélateur !</span>
+                    </span>
+                </a>
+            </div>
+
+            <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+    <div data-simplebar class="h-100">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+{#            <!-- Left Menu Start -->#}
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title" data-key="t-menu">Application</li>
+
+{#                <li>#}
+{#                    <a href="{{ path('app_player_index') }}">#}
+{#                        <i data-feather="home"></i>#}
+{#                        <span data-key="t-dashboard">Joueurs</span>#}
+{#                    </a>#}
+{#                </li>#}
+            </ul>
+
+
+            <div class="card sidebar-alert border-0 text-center mx-4 mb-0 mt-5">
+                <div class="card-body">
+                    <div class="mt-4">
+                        <h5 class="alertcard-title font-size-16">Connecté en temps
+                            que {{ app.user.userIdentifier }}</h5>
+                        <a href="{{ path('app_logout') }}" class="btn btn-primary mt-2">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

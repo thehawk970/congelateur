@@ -1,10 +1,13 @@
-import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
-import './styles/app.css';
+import './bootstrap.js'
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+import './minia/css/preloader.css'
+import './minia/css/bootstrap.css'
+import './minia/css/icons.css'
+import './minia/css/app.css'
+import './minia/libs/jquery/jquery.min.js'
+import './minia/libs/bootstrap/js/bootstrap.bundle.min.js'
+import './minia/libs/metismenu/metisMenu.min.js'
+import './minia/libs/simplebar/simplebar.min.js'
+import './minia/libs/feather-icons/feather.min.js'
+import './minia/libs/pace-js/pace.min.js'
+import './minia/js/app.js'

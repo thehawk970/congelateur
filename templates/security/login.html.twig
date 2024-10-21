@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8"/>
+    {% include '_partial/_meta.html.twig' with {title: "Login"} %}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('login') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body>
+
+<!-- <body data-layout="horizontal"> -->
+<div class="auth-page">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-xxl-12 col-lg-12 col-md-12">
+                <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                    <div class="w-100">
+                        <div class="d-flex flex-column h-100">
+                            <div class="mb-4 mb-md-5 text-center">
+                                <a href="{{ path('app_home') }}" class="d-block auth-logo">
+                                    <twig:Logo size="192"/>
+                                    <span
+                                        class="logo-txt">Bad Belves</span>
+                                </a>
+                            </div>
+                            <div class="auth-content my-auto">
+                                <div class="text-center">
+                                    <h5 class="mb-0">Badminton Belvesois</h5>
+                                    <p class="text-muted mt-2">Se connecter à l'application de gestion du Bad
+                                        Belvesois.</p>
+                                </div>
+                                <form method="post">
+                                    {% if error %}
+                                        <div
+                                            class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3">
+                                            You are logged in as {{ app.user.userIdentifier }}, <a
+                                                href="{{ path('app_logout') }}">Logout</a>
+                                        </div>
+                                    {% endif %}
+
+                                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                                    <label for="inputUsername">Username</label>
+                                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+                                           class="form-control" autocomplete="username" required autofocus>
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control"
+                                           autocomplete="current-password" required>
+
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ csrf_token('authenticate') }}"
+                                    >
+
+                                    <button class="btn btn-lg btn-primary mt-3" type="submit">
+                                        Sign in
+                                    </button>
+                                </form>
+
+                            </div>
+                            <div class="mt-4 mt-md-5 text-center">
+                                <p class="mb-0">©
+                                    Par Julien CLAUZEL
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end auth full page content -->
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container fluid -->
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+
+</body>
+
+</html>
