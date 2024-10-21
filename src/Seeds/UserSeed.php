@@ -56,7 +56,7 @@ class UserSeed extends Seed
                 'email' => 'me@julien-clauzel.fr',
                 'password' => 'password123',
                 'roles' => ['ROLE_SUPER_ADMIN'],
-            ]
+            ],
         ];
 
         foreach ($users as $user) {

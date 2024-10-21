@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_row(form.label) }}
+    {{ form_row(form.color) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

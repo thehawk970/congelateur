@@ -15,7 +15,12 @@ return [
     'app' => [
         'path' => './assets/app.js',
         'entrypoint' => true,
-    ], 'login' => [
+    ],
+    'table' => [
+        'path' => './assets/table.js',
+        'entrypoint' => true,
+    ],
+    'login' => [
         'path' => './assets/login.js',
         'entrypoint' => true,
     ],
@@ -47,5 +52,18 @@ return [
     ],
     '@symfony/ux-live-component' => [
         'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
+    ],
+    'datatables.net-dt' => [
+        'version' => '2.1.8',
+    ],
+    'jquery' => [
+        'version' => '3.7.1',
+    ],
+    'datatables.net' => [
+        'version' => '2.1.8',
+    ],
+    'datatables.net-dt/css/dataTables.dataTables.min.css' => [
+        'version' => '2.1.8',
+        'type' => 'css',
     ],
 ];

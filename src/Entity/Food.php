@@ -24,15 +24,13 @@ class Food
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $weight = null;
 
-    /**
-     * @var Collection<int, Category>
-     */
-    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'food')]
-    private Collection $category;
+    #[ORM\ManyToOne(inversedBy: 'food')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -76,26 +74,14 @@ class Food
         return $this;
     }
 
-    /**
-     * @return Collection<int, Category>
-     */
-    public function getCategory(): Collection
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function addCategory(Category $category): static
+    public function setCategory(?Category $category): static
     {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Category $category): static
-    {
-        $this->category->removeElement($category);
+        $this->category = $category;
 
         return $this;
     }

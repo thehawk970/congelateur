@@ -40,13 +40,25 @@
 {#            <!-- Left Menu Start -->#}
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" data-key="t-menu">Application</li>
+                <li>
+                    <a href="{{ path('app_color_index') }}">
+                        <i data-feather="award"></i>
+                        <span data-key="t-couleur">Couleurs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_category_index') }}">
+                        <i data-feather="box"></i>
+                        <span data-key="t-category">Catégories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_food_index') }}">
+                        <i data-feather="home"></i>
+                        <span data-key="t-food">Aliments</span>
+                    </a>
+                </li>
 
-{#                <li>#}
-{#                    <a href="{{ path('app_player_index') }}">#}
-{#                        <i data-feather="home"></i>#}
-{#                        <span data-key="t-dashboard">Joueurs</span>#}
-{#                    </a>#}
-{#                </li>#}
             </ul>
 
 

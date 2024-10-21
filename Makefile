@@ -16,9 +16,11 @@ post-deploy:
 	bin/console asset-map:compile
 	@echo "Post-deploy done";
 
+cs:
+	php vendor/bin/php-cs-fixer fix
+
 qa:
 	php vendor/bin/rector process src
-	php vendor/bin/php-cs-fixer fix
 	php vendor/bin/phpstan analyse
 
 lint:

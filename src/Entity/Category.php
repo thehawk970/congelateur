@@ -18,14 +18,17 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $color = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Color $color = null;
 
     /**
      * @var Collection<int, Food>
      */
-    #[ORM\ManyToMany(targetEntity: Food::class, mappedBy: 'category')]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Food::class)]
     private Collection $food;
+
 
     public function __construct()
     {
@@ -49,12 +52,12 @@ class Category
         return $this;
     }
 
-    public function getColor(): ?string
+    public function getColor(): ?Color
     {
         return $this->color;
     }
 
-    public function setColor(string $color): static
+    public function setColor(Color $color): static
     {
         $this->color = $color;
 
@@ -73,7 +76,7 @@ class Category
     {
         if (!$this->food->contains($food)) {
             $this->food->add($food);
-            $food->addCategory($this);
+            $food->setCategory($this);
         }
 
         return $this;
@@ -82,9 +85,14 @@ class Category
     public function removeFood(Food $food): static
     {
         if ($this->food->removeElement($food)) {
-            $food->removeCategory($this);
+            // set the owning side to null (unless already changed)
+            if ($food->getCategory() === $this) {
+                $food->setCategory(null);
+            }
         }
 
         return $this;
     }
+
+
 }
