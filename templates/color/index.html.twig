@@ -3,23 +3,18 @@
 {% block title %}Color index{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_color_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Label</th>
-                <th>Color</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for color in colors %}
             <tr>
-                <td>{{ color.id }}</td>
-                <td>{{ color.label }}</td>
-                <td>{{ component('Tag', {
-                        color: color
-                    }) }}</td>
+                <td>{{ component('Tag', {color: color}) }}{{ color.label }}</td>
                 <td>
                     <a href="{{ path('app_color_show', {'id': color.id}) }}">show</a>
                     <a href="{{ path('app_color_edit', {'id': color.id}) }}">edit</a>
@@ -33,5 +28,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_color_new') }}">Create new</a>
+
 {% endblock %}

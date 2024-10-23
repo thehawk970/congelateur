@@ -3,7 +3,7 @@
 {% block title %}Food index{% endblock %}
 
 {% block body %}
-
+        <a href="{{ path('app_food_new') }}">Create new</a>
     {% if food|length > 0 %}
     <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
         <thead>
@@ -37,5 +37,5 @@
         <p>No food found</p>
     {% endif %}
 
-{#    <a href="{{ path('app_food_new') }}">Create new</a>#}
+
 {% endblock %}

@@ -3,9 +3,9 @@
 {% block title %}New Color{% endblock %}
 
 {% block body %}
-    <h1>Create new Color</h1>
-
-    {{ include('color/_form.html.twig') }}
 
     <a href="{{ path('app_color_index') }}">back to list</a>
+    {{ include('color/_form.html.twig') }}
+
+
 {% endblock %}

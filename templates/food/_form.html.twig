@@ -1,4 +1,10 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    <div class="d-flex justify-content-evenly">
+        <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+        {% if button_label is defined %}{{ include('food/_delete_form.html.twig') }}{% endif %}
+
+    </div>
+
 {{ form_end(form) }}

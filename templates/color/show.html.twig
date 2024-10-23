@@ -3,7 +3,10 @@
 {% block title %}Color{% endblock %}
 
 {% block body %}
-    <h1>Color</h1>
+    <div class="d-flex justify-content-evenly">
+        <a href="{{ path('app_color_index') }}" class="btn btn-outline-success">back to list</a>
+        <a href="{{ path('app_color_edit', {'id': color.id}) }}" class="btn btn-outline-warning">edit</a>
+    </div>
 
     <table class="table">
         <tbody>

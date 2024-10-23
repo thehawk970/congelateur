@@ -3,7 +3,10 @@
 {% block title %}Food{% endblock %}
 
 {% block body %}
-    <h1>Food</h1>
+    <div class="d-flex justify-content-evenly">
+        <a href="{{ path('app_food_index') }}" class="btn btn-outline-success">back to list</a>
+        <a href="{{ path('app_food_edit', {'id': food.id}) }}" class="btn btn-outline-warning">edit</a>
+    </div>
 
     <table class="table">
         <tbody>
@@ -25,10 +28,4 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_food_index') }}">back to list</a>
-
-    <a href="{{ path('app_food_edit', {'id': food.id}) }}">edit</a>
-
-    {{ include('food/_delete_form.html.twig') }}
 {% endblock %}
