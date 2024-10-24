@@ -4,7 +4,7 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 
 RUN apt-get update && apt-get install -y git zip unzip gcc vim
 RUN curl -sS https://getcomposer.org/installer | php -- \
---install-dir=/usr/bin --filename=composer
+        --install-dir=/usr/bin --filename=composer
 
 WORKDIR /app
 

@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="d-flex justify-content-evenly">
-        <a href="{{ path('app_category_index') }}" class="btn btn-outline-success">back to list</a>
+        <a href="{{ path('app_category_index') }}"  class="btn btn-outline-info">back to list</a>
         <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-outline-warning">edit</a>
     </div>
 
@@ -21,7 +21,9 @@
             </tr>
             <tr>
                 <th>Color</th>
-                <td>{{ category.color }}</td>
+                <td>{{ component('Tag', {
+                    color: category.color
+                    }) }} {{ category.color }}</td>
             </tr>
         </tbody>
     </table>

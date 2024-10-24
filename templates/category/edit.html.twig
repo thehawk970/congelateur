@@ -3,6 +3,6 @@
 {% block title %}Edit Category{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_category_index') }}">back to list</a>
+    <a href="{{ path('app_category_index') }}" class="btn btn-outline-info">back to list</a>
     {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
 {% endblock %}

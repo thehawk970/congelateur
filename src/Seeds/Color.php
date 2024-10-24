@@ -56,6 +56,7 @@ class Color extends Seed
             '#FFA500' => 'Orange',
             '#FFFF00' => 'Jaune',
             '#008000' => 'Vert',
+            '#0080ff' => 'Bleu',
 
         ];
 

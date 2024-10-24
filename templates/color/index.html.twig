@@ -3,7 +3,7 @@
 {% block title %}Color index{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_color_new') }}">Create new</a>
+    <a href="{{ path('app_color_new') }}"  class="btn btn-outline-success">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -16,8 +16,8 @@
             <tr>
                 <td>{{ component('Tag', {color: color}) }}{{ color.label }}</td>
                 <td>
-                    <a href="{{ path('app_color_show', {'id': color.id}) }}">show</a>
-                    <a href="{{ path('app_color_edit', {'id': color.id}) }}">edit</a>
+                    <a href="{{ path('app_color_show', {'id': color.id}) }}"  class="btn btn-outline-info">🔎 Voir</a>
+                    <a href="{{ path('app_color_edit', {'id': color.id}) }}" class="btn btn-outline-warning">📝 Edit</a>
                 </td>
             </tr>
         {% else %}

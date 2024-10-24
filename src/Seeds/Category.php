@@ -3,6 +3,7 @@
 namespace App\Seeds;
 
 use App\Entity\Category as _Category;
+use App\Entity\Color as _Color;
 use Doctrine\ORM\EntityManagerInterface;
 use Evotodi\SeedBundle\Command\Seed;
 use Symfony\Component\Console\Input\InputInterface;
@@ -54,28 +55,39 @@ class Category extends Seed
         $categories = [
             [
                 'name' => '🍗 Viande',
+                'color' => '#FF0000'
             ],
             [
                 'name' => '🫑 Légumes',
+                'color' => '#008000'
             ],
             [
                 'name' => '🍒 Fruits',
+                'color' => '#FFA500'
             ],
             [
                 'name' => '🐟 Poisson',
+                'color'=> '#0080ff'
             ],
             [
-                'name' => '🧄 Herbe'
+                'name' => '🧄 Herbe',
+                'color' => '#008000'
             ],
             [
-                'name' => '🧀 Fromage'
+                'name' => '🧀 Fromage',
+                'color' => '#FFFF00'
             ]
         ];
 
 
+        $colorRepository = $this->entityManager->getRepository(_Color::class);
         foreach ($categories as $category) {
+
+            $color = $colorRepository->findOneBy(['color' => $category['color']]);
+
             $categoryRepo = new _Category();
             $categoryRepo->setLabel($category['name']);
+            $categoryRepo->setColor($color);
             $this->entityManager->persist($categoryRepo);
         }
 

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <a href="{{ path('app_food_index') }}">back to list</a>
+    <a href="{{ path('app_food_index') }}" class="btn btn-outline-info">back to list</a>
 
     {{ include('food/_form.html.twig', {'button_label': 'Update'}) }}
 
