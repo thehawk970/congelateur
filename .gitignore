@@ -33,3 +33,4 @@
 phpstan.neon
 ###< phpstan/phpstan ###
 .kamal/.secrets/DK_TOKEN
+.DS_Store
