@@ -33,7 +33,7 @@ final class FoodController extends AbstractController
             $entityManager->persist($food);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_food_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_food_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('food/new.html.twig', [
@@ -77,5 +77,27 @@ final class FoodController extends AbstractController
         }
 
         return $this->redirectToRoute('app_food_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/decrement', name: 'app_food_dec')]
+    public function decrement(Food $food, EntityManagerInterface $entityManager): Response
+    {
+
+        $food->setQuantity($food->getQuantity() - 1);
+        if($food->getQuantity() <= 0) {
+            $food->setQuantity(0);
+        }
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/increment', name: 'app_food_inc')]
+    public function increment(Food $food, EntityManagerInterface $entityManager): Response
+    {
+        $food->setQuantity($food->getQuantity() + 1);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

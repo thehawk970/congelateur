@@ -1,4 +1,32 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>Hello World!</h1>
+    <div class="container">
+        <div class="row align-items-start" style="min-height: 6rem;">
+            <div class="col-sm-2">
+                <a href="{{ path('app_food_new') }}" class="btn btn-primary">Ajouter un aliment</a>
+            </div>
+            {% for food in foods %}
+            <div class="col-sm-4">
+                <div class="card p-2">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-bolder fs-4">{{ food.label }}</span>
+                        <span class="fs-4">{{ component('Tag', {food: food, color: food.category.color}) }}</span>
+                    </div>
+
+                    <p>Qté restante <span class="badge bg-secondary">{{ food.quantity }}</span></p>
+                    {% if food.weight is not null %}
+                        <p>Poids <span class="badge bg-secondary">{{ food.weight }}</span></p>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-evenly">
+                        <a href="{{ path('app_food_dec', {id: food.id}) }}" class="btn btn-sm btn-outline-danger">-1</a>
+                        <a href="{{ path('app_food_show', {id: food.id}) }}" class="btn btn-sm btn-outline-primary">Voir</a>
+                        <a href="{{ path('app_food_edit', {id: food.id}) }}" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                        <a href="{{ path('app_food_inc', {id: food.id}) }}" class="btn btn-sm btn-outline-success">+1</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
