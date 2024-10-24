@@ -23,7 +23,7 @@ proxy:
   app_port: 80
   healthcheck:
       interval: 30
-      path: /
+      path: /login
       timeout: 30
 # Credentials for your image host.
 registry:
@@ -45,6 +45,7 @@ env:
     APP_SECRET: efda58df3f77703bbcc47f4203e21046
     DOCUMENT_ROOT: /app/public
     SENTRY_DSN: http://5edc233e605140e2b648edcd9cf1d4f1@glitchtip-fc8cok08004ks0gckos0occ4.149.100.157.65.sslip.io/3
+    DATABASE_URL: sqlite:///%kernel.project_dir%/var/data.db
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
 #
