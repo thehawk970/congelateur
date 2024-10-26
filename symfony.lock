@@ -65,6 +65,9 @@
             "config/packages/fos_rest.yaml"
         ]
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.6.1"
+    },
     "phpstan/phpstan": {
         "version": "1.12",
         "recipe": {
