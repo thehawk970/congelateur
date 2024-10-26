@@ -52,7 +52,8 @@
         "symfony/yaml": "7.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/intl-extra": "^3.9",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "wedevelopnl/ux-table": "^0.4.1"
     },
     "config": {
         "allow-plugins": {

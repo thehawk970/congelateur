@@ -19,6 +19,12 @@
                     "@symfony/ux-live-component/dist/live.min.css": true
                 }
             }
+        },
+        "@wedevelopnl/ux-table": {
+            "ux-table": {
+                "enabled": true,
+                "fetch": "eager"
+            }
         }
     },
     "entrypoints": []

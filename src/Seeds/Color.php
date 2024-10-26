@@ -38,7 +38,7 @@ class Color extends Seed
      */
     public static function getOrder(): int
     {
-        return 0;
+        return 1;
     }
 
     /**
@@ -52,11 +52,10 @@ class Color extends Seed
         $this->disableDoctrineLogging();
 
         $colors = [
-            '#FF0000' => 'Rouge',
-            '#FFA500' => 'Orange',
-            '#FFFF00' => 'Jaune',
-            '#008000' => 'Vert',
-            '#0080ff' => 'Bleu',
+            'danger' => 'Rouge',
+            'success' => 'Vert',
+            'info' => 'Bleu',
+            'warning' => 'Jaune',
 
         ];
 

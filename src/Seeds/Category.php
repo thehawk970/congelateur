@@ -14,8 +14,8 @@ class Category extends Seed
 {
     public function __construct(
         protected UserPasswordHasherInterface $passwordHasher,
-        protected EntityManagerInterface $entityManager,
-        ?string $name = null)
+        protected EntityManagerInterface      $entityManager,
+        ?string                               $name = null)
     {
         parent::__construct($name);
     }
@@ -39,7 +39,7 @@ class Category extends Seed
      */
     public static function getOrder(): int
     {
-        return 0;
+        return 2;
     }
 
     /**
@@ -55,27 +55,19 @@ class Category extends Seed
         $categories = [
             [
                 'name' => '🍗 Viande',
-                'color' => '#FF0000'
+                'color' => 'Rouge'
             ],
             [
                 'name' => '🫑 Légumes',
-                'color' => '#008000'
+                'color' => 'Vert'
             ],
             [
                 'name' => '🍒 Fruits',
-                'color' => '#FFA500'
+                'color' => 'Jaune'
             ],
             [
-                'name' => '🐟 Poisson',
-                'color'=> '#0080ff'
-            ],
-            [
-                'name' => '🧄 Herbe',
-                'color' => '#008000'
-            ],
-            [
-                'name' => '🧀 Fromage',
-                'color' => '#FFFF00'
+                'name' => '🧄 Herbes / Champignons',
+                'color' => 'Bleu'
             ]
         ];
 
@@ -83,7 +75,7 @@ class Category extends Seed
         $colorRepository = $this->entityManager->getRepository(_Color::class);
         foreach ($categories as $category) {
 
-            $color = $colorRepository->findOneBy(['color' => $category['color']]);
+            $color = $colorRepository->findOneBy(['label' => $category['color']]);
 
             $categoryRepo = new _Category();
             $categoryRepo->setLabel($category['name']);

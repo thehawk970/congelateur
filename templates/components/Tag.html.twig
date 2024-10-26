@@ -1,4 +1,11 @@
 <div {{ attributes }} class="my-auto lh-1" style="display:inline-block;">
-    {% if color is not null and color.color is not null %}<div style="display: inline-block; border-radius: 50%; height: 1rem; width: 1rem; background-color: {{ color.color }}; margin-right: 3px;"></div>{% endif %}
-    {% if food is defined %}{{ food.category.label }}#{{ food.id }}{% endif %}
+        {% set _bg = color.color ?? "dark-subtle" %}
+        {% set _txt = color.color ?? "dark" %}
+        <span class="btn btn-rounded btn-{{ _bg }} no-pointer-events mx-2">
+                {% if food is defined and food.number is defined and food.number is not null %}
+                        {{ food.number ~"  "~ color.label|first }}
+                {% else %}
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+        </span>
 </div>

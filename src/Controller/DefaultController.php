@@ -12,8 +12,7 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(FoodRepository $foodRepository): Response
     {
-
-        $foods = $foodRepository->findAll();
+        $foods = $foodRepository->findAllFoodsAlphabetically();
         return $this->render('default/index.html.twig', [
             'foods' => $foods,
         ]);

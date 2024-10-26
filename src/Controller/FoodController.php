@@ -71,7 +71,7 @@ final class FoodController extends AbstractController
     #[Route('/{id}', name: 'app_food_delete', methods: ['POST'])]
     public function delete(Request $request, Food $food, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$food->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $food->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($food);
             $entityManager->flush();
         }
@@ -79,23 +79,27 @@ final class FoodController extends AbstractController
         return $this->redirectToRoute('app_food_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/decrement', name: 'app_food_dec')]
-    public function decrement(Food $food, EntityManagerInterface $entityManager): Response
-    {
 
-        $food->setQuantity($food->getQuantity() - 1);
-        if($food->getQuantity() <= 0) {
-            $food->setQuantity(0);
-        }
+    #[Route('/{id}/get_out', name: 'app_food_out')]
+    public function getOut(Food $food, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($food);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/increment', name: 'app_food_inc')]
-    public function increment(Food $food, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/dec', name: 'app_food_dec')]
+    public function decrement(Food $food, EntityManagerInterface $entityManager): Response
     {
-        $food->setQuantity($food->getQuantity() + 1);
+        $food->setQuantity($food->getQuantity() - 1);
+
+        if ($food->getQuantity() <= 0) {
+            $entityManager->remove($food);
+        } else {
+            $entityManager->persist($food);
+        }
+
         $entityManager->flush();
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);

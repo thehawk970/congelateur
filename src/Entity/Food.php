@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\FoodRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FoodRepository::class)]
@@ -15,18 +13,18 @@ class Food
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $quantity = null;
-
     #[ORM\Column(length: 255)]
     private ?string $label = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $weight = null;
 
     #[ORM\ManyToOne(inversedBy: 'food')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $number = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $quantity = null;
 
     public function __construct()
     {
@@ -36,18 +34,6 @@ class Food
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getQuantity(): ?float
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(?float $quantity): static
-    {
-        $this->quantity = $quantity;
-
-        return $this;
     }
 
     public function getLabel(): ?string
@@ -62,17 +48,6 @@ class Food
         return $this;
     }
 
-    public function getWeight(): ?string
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(?string $weight): static
-    {
-        $this->weight = $weight;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -82,6 +57,30 @@ class Food
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getNumber(): ?string
+    {
+        return $this->number;
+    }
+
+    public function setNumber(string $number): static
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(?int $quantity): static
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

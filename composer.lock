@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9906017b8964727cf77ad9a371c0a30",
+    "content-hash": "690ff3b14ba964b8492bcb5b58ec9d93",
     "packages": [
         {
             "name": "composer/semver",
@@ -8635,6 +8635,56 @@
             "time": "2024-03-07T20:33:40+00:00"
         },
         {
+            "name": "wedevelopnl/ux-table",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wedevelopnl/ux-table.git",
+                "reference": "93a801970b5196f42acbb25eb891996d9f0e2410"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wedevelopnl/ux-table/zipball/93a801970b5196f42acbb25eb891996d9f0e2410",
+                "reference": "93a801970b5196f42acbb25eb891996d9f0e2410",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/form": ">5.4",
+                "symfony/routing": ">5.4",
+                "symfony/ux-twig-component": ">2",
+                "twig/twig": ">2"
+            },
+            "suggest": {
+                "symfony/ux-turbo": "*",
+                "symfony/webpack-encore-bundle": "to use the Stimulus assets included in this bundle"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "WeDevelop\\UXTable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rick Kuipers",
+                    "email": "rick@wedevelop.nl"
+                }
+            ],
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "issues": "https://github.com/wedevelopnl/ux-table/issues",
+                "source": "https://github.com/wedevelopnl/ux-table/tree/v0.4.1"
+            },
+            "time": "2024-04-25T13:43:33+00:00"
+        },
+        {
             "name": "willdurand/jsonp-callback-validator",
             "version": "v2.0.0",
             "source": {
@@ -11019,6 +11069,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

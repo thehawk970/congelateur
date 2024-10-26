@@ -16,6 +16,16 @@ class FoodRepository extends ServiceEntityRepository
         parent::__construct($registry, Food::class);
     }
 
+    public function findAllFoodsAlphabetically(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->orderBy('LOWER(f.label)', 'ASC')
+            ->orderBy('f.number', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    /**
     //     * @return Food[] Returns an array of Food objects
     //     */

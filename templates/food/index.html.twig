@@ -9,9 +9,7 @@
         <thead>
             <tr>
                 <th>Catégory</th>
-                <th>Quantity</th>
                 <th>Label</th>
-                <th>Weight</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,9 +20,7 @@
                         color: food.category.color,
                         food: food
                     }) }}</td>
-                <td>{{ food.quantity }}</td>
                 <td>{{ food.label }}</td>
-                <td>{{ food.weight }}</td>
                 <td>
                     <a href="{{ path('app_food_show', {'id': food.id}) }}" class="btn btn-outline-info">🔎 Voir</a>
                     <a href="{{ path('app_food_edit', {'id': food.id}) }}" class="btn btn-outline-warning">📝 <E></E>dit</a>
