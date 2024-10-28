@@ -26,6 +26,10 @@ final class GridFilter extends AbstractController
     public array $categories = [];
 
 
+    #[LiveProp(writable: true)]
+    public string $search = '';
+
+
     public function __construct(
         protected CategoryRepository $categoryRepository,
         protected FoodRepository     $foodRepository
@@ -37,11 +41,37 @@ final class GridFilter extends AbstractController
     #[ExposeInTemplate]
     public function getFoods(): array
     {
-        if (null === $this->category) {
+        $criteria = [];
+        $criteria = array_merge($criteria, $this->getCategoryCriteria());
+        $criteria = array_merge($criteria, $this->getSearchCriteria());
+
+        if (empty($criteria)) {
             return $this->foodRepository->findAll();
         }
-        
-        return $this->foodRepository->findBy(['category' => $this->category]);
+
+        $qb = $this
+            ->foodRepository
+            ->filterCriteria($criteria);
+
+        $qb = $this->foodRepository->orderCriteria($qb, []);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    protected function getCategoryCriteria(): array
+    {
+        if (null !== $this->category) {
+            return ['category' => $this->category];
+        }
+        return [];
+    }
+
+    protected function getSearchCriteria(): array
+    {
+        if ('' !== $this->search) {
+            return ['label' => 'LIKE ' . $this->search];
+        }
+        return [];
     }
 
 

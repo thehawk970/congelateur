@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Food;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,32 +23,31 @@ class FoodRepository extends ServiceEntityRepository
             ->orderBy('LOWER(f.label)', 'ASC')
             ->orderBy('f.number', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
-    //    /**
-    //     * @return Food[] Returns an array of Food objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('f.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function filterCriteria(array $criteria): QueryBuilder
+    {
 
-    //    public function findOneBySomeField($value): ?Food
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        $qb = $this->createQueryBuilder('f');
+        foreach ($criteria as $field => $value) {
+
+            if ($field === 'label' && str_starts_with($value, 'LIKE ')) {
+                $value = substr($value, 5);
+                $qb->andWhere("f.$field LIKE :$field")
+                    ->setParameter($field, "%$value%");
+            } else {
+                $qb->andWhere("f.$field = :$field")
+                    ->setParameter($field, $value);
+            }
+        }
+
+        return $qb;
+    }
+
+    public function orderCriteria(QueryBuilder $qb, array $criteria): QueryBuilder
+    {
+
+        return $qb;
+    }
 }

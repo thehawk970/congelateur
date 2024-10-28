@@ -1,14 +1,17 @@
 <div{{ attributes }}>
 
-    <div class="col-12 pb-3">
-        <select data-model="category" class="form-select">
-            <option value="0">Toutes les catégories</option>
-            {% for c in categories %}
-                {{ dump(c) }}
-                <option value="{{ c.id }}">{{ c.label }}</option>
-            {% endfor %}
-        </select>
-
+    <div class="row">
+        <div class="col-4 pb-3">
+            <select data-model="category" class="form-select">
+                <option value="0">Toutes les catégories</option>
+                {% for c in categories %}
+                    <option value="{{ c.id }}">{{ c.label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-4 pb-3">
+            <input type="text" data-model="search" class="form-control" placeholder="Recherche"/>
+        </div>
     </div>
 
     <div class="col-12">
@@ -17,7 +20,7 @@
                 <div class="col-sm-4">
                     <div class="card p-2">
                         <div class="d-flex justify-content-between mb-3">
-                            <span class="fw-bolder fs-4">{{ food.label }}{% if food.quantity is not null %}({{ food.quantity }}){% endif %}</span>
+                            <span class="fw-bolder fs-4">{{ food.label|capitalize }}{% if food.quantity is not null %}({{ food.quantity }}){% endif %}</span>
                             <span>
                                 <a href="{{ path('app_food_show', {id: food.id}) }}" class="fs-4">
                                     {{ component('Tag', {food: food, color: food.category.color}) }}
