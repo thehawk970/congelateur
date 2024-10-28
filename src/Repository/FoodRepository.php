@@ -47,6 +47,13 @@ class FoodRepository extends ServiceEntityRepository
 
     public function orderCriteria(QueryBuilder $qb, array $criteria): QueryBuilder
     {
+        foreach ($criteria as $field => $order) {
+            if ($order === null) {
+                continue;
+            }
+            $field = strtolower($field);
+            $qb->addOrderBy("f.$field", $order);
+        }
 
         return $qb;
     }

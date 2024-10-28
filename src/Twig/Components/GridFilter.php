@@ -7,6 +7,8 @@ use App\Repository\CategoryRepository;
 use App\Repository\FoodRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\TwigComponent\Attribute\ExposeInTemplate;
@@ -25,10 +27,18 @@ final class GridFilter extends AbstractController
     #[LiveProp(writable: true)]
     public array $categories = [];
 
-
     #[LiveProp(writable: true)]
     public string $search = '';
 
+    #[LiveProp(writable: true)]
+    public array $filters = [
+        'Label' => null,
+        'Category' => null,
+        'Numero' => null,
+    ];
+
+    #[LiveProp(writable: true)]
+    public bool $showFilters = true;
 
     public function __construct(
         protected CategoryRepository $categoryRepository,
@@ -53,7 +63,7 @@ final class GridFilter extends AbstractController
             ->foodRepository
             ->filterCriteria($criteria);
 
-        $qb = $this->foodRepository->orderCriteria($qb, []);
+        $qb = $this->foodRepository->orderCriteria($qb, $this->filters);
 
         return $qb->getQuery()->getResult();
     }
@@ -72,6 +82,17 @@ final class GridFilter extends AbstractController
             return ['label' => 'LIKE ' . $this->search];
         }
         return [];
+    }
+
+    #[LiveAction]
+    public function toggle(#[LiveArg] string $id): void
+    {
+        $sens = $this->filters[$id] ?? null;
+        $this->filters[$id] = match ($sens) {
+            null => 'ASC',
+            'ASC' => 'DESC',
+            'DESC' => null,
+        };
     }
 
 

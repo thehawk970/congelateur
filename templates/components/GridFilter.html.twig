@@ -1,7 +1,12 @@
 <div{{ attributes }}>
 
-    <div class="row">
-        <div class="col-4 pb-3">
+    <div class="row pb-3">
+        <div class="col-12 pb-2 justify-content-center">
+            <a href="{{ path('app_food_new') }}" class="btn btn-primary">Ajouter un aliment</a>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col-4">
             <select data-model="category" class="form-select">
                 <option value="0">Toutes les catégories</option>
                 {% for c in categories %}
@@ -9,19 +14,43 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="col-4 pb-3">
+        <div class="col-4">
             <input type="text" data-model="search" class="form-control" placeholder="Recherche"/>
+        </div>
+        <div class="col-4">
+            {% for filter,sens in filters %}
+                <button
+                        class="btn btn{% if sens is null %}-outline{% endif %}-secondary"
+                        data-action="live#action"
+                        data-live-action-param="toggle"
+                        data-live-id-param="{{ filter }}"
+                >{{ filter }}
+                    {% if sens is not null %}
+                        {% if sens|lower == 'asc' %}
+                            <i class="mdi mdi-arrow-up"></i>
+                        {% else %}
+                            <i class="mdi mdi-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </button>
+            {% endfor %}
+            <button
+                    class="btn btn-outline-secondary"
+                    data-action="live#$render">
+                <i class="mdi mdi-refresh"></i>
+            </button>
         </div>
     </div>
 
-    <div class="col-12">
-        <div class="row align-items-center justify-content-evenly" style="min-height: 6rem;">
-            {% for food in foods %}
-                <div class="col-sm-4">
-                    <div class="card p-2">
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="fw-bolder fs-4">{{ food.label|capitalize }}{% if food.quantity is not null %}({{ food.quantity }}){% endif %}</span>
-                            <span>
+    <div class="row">
+        <div class="col-12">
+            <div class="row align-items-center justify-content-evenly" style="min-height: 6rem;">
+                {% for food in foods %}
+                    <div class="col-sm-4">
+                        <div class="card p-2">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="fw-bolder fs-4">{{ food.label|capitalize }}{% if food.quantity is not null %}({{ food.quantity }}){% endif %}</span>
+                                <span>
                                 <a href="{{ path('app_food_show', {id: food.id}) }}" class="fs-4">
                                     {{ component('Tag', {food: food, color: food.category.color}) }}
                                 </a>
@@ -30,27 +59,28 @@
                                     <i class="mdi mdi-pencil d-block font-size-16"></i>
                                 </a>
                             </span>
-                        </div>
+                            </div>
 
 
-                        <div class="d-flex justify-content-evenly">
+                            <div class="d-flex justify-content-evenly">
 
-                            {% if food.quantity is not null and food.quantity >= 1 %}
-                                <a
-                                        href="{{ path('app_food_dec', {id: food.id }) }}"
-                                        class="btn btn-sm btn-secondary btn-rounded"
-                                ><< Un en moins</a>
-                            {% else %}
-                                <a
-                                        href="{{ path('app_food_out', {id: food.id }) }}"
-                                        class="btn btn-sm btn-outline-primary btn-rounded"
-                                        onclick="return confirm('L\'aliment est bien sortit ? (et va être supprimé)');"
-                                >Aliment sortit du congelateur</a>
-                            {% endif %}
+                                {% if food.quantity is not null and food.quantity >= 1 %}
+                                    <a
+                                            href="{{ path('app_food_dec', {id: food.id }) }}"
+                                            class="btn btn-sm btn-secondary btn-rounded"
+                                    ><< Un en moins</a>
+                                {% else %}
+                                    <a
+                                            href="{{ path('app_food_out', {id: food.id }) }}"
+                                            class="btn btn-sm btn-outline-primary btn-rounded"
+                                            onclick="return confirm('L\'aliment est bien sortit ? (et va être supprimé)');"
+                                    >Aliment sortit du congelateur</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
