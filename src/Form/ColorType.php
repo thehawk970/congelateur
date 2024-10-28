@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Color;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ColorType as ColorT;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +14,19 @@ class ColorType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('color', ColorT::class)
-        ;
+            ->add('color', ChoiceType::class, [
+                'choices' => [
+                    'Primary' => 'primary',
+                    'Secondary' => 'secondary',
+                    'Success' => 'success',
+                    'Danger' => 'danger',
+                    'Warning' => 'warning',
+                    'Info' => 'info',
+                    'Light' => 'light',
+                    'Dark' => 'dark',
+
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

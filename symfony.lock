@@ -362,6 +362,9 @@
             "config/routes/ux_live_component.yaml"
         ]
     },
+    "symfony/ux-turbo": {
+        "version": "v2.21.0"
+    },
     "symfony/ux-twig-component": {
         "version": "2.20",
         "recipe": {
@@ -401,8 +404,5 @@
     },
     "twig/extra-bundle": {
         "version": "v3.13.0"
-    },
-    "wedevelopnl/ux-table": {
-        "version": "v0.4.1"
     }
 }
