@@ -17,3 +17,4 @@ COPY . /app
 
 RUN cp .env.prod .env.local
 RUN composer install --no-dev --optimize-autoloader
+RUN php bin/console cache:warmup && php bin/console asset-map:compile
