@@ -17,6 +17,7 @@
         "evotodi/seed-bundle": "^7.0",
         "friendsofsymfony/rest-bundle": "^3.7",
         "knplabs/knp-paginator-bundle": "^6.6",
+        "makinacorpus/db-tools-bundle": "^1.2",
         "phpdocumentor/reflection-docblock": "^5.4",
         "runtime/frankenphp-symfony": "^0.2.0",
         "sentry/sentry-symfony": "^5.0",

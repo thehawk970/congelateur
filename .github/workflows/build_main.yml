@@ -1,0 +1,43 @@
+name: Build and push Docker image [main]
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKER_IMAGE_NAME: thehawk970/congelateur
+  RELEASE_VERSION: "main"
+
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build the Docker image
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION
+
+      - name: Login to the Docker Registry
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login $DOCKER_REGISTRY_URL -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      # Tag the Docker Images
+      - name: Create a latest image as well
+        run: docker tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION $DOCKER_IMAGE_NAME:latest
+
+      # Push the images to the registry
+      - name: Push the Docker image with version number
+        run: docker push $DOCKER_IMAGE_NAME:$RELEASE_VERSION
+
+      - name: Push the latest tag
+        run: docker push $DOCKER_IMAGE_NAME:latest
+
+      # Remove the local images
+      - name: Remove the Docker image with version number
+        run: docker rmi $DOCKER_IMAGE_NAME:$RELEASE_VERSION
+
+      - name: Remove the Docker image with latest tag
+        run: docker rmi $DOCKER_IMAGE_NAME:latest

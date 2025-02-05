@@ -140,6 +140,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpdoc-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/ux-turbo" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/makinacorpus/db-tools-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/makinacorpus/query-builder" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

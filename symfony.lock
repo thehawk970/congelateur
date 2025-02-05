@@ -68,6 +68,9 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v6.6.1"
     },
+    "makinacorpus/db-tools-bundle": {
+        "version": "1.2.1"
+    },
     "phpstan/phpstan": {
         "version": "1.12",
         "recipe": {

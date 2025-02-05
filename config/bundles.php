@@ -22,4 +22,5 @@ return [
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
+    MakinaCorpus\DbToolsBundle\DbToolsBundle::class => ['all' => true],
 ];
