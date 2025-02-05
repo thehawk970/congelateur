@@ -11,5 +11,6 @@ lint:
 	php bin/console lint:container
 
 
-
+db-restore:
+	bin/console db-tools:restore --yes-i-am-sure-of-what-i-am-doing
 

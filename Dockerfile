@@ -25,6 +25,7 @@ RUN apt update && apt install -y \
     gnupg \
     lsb-release \
     sudo \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgresql-archive-keyring.gpg
